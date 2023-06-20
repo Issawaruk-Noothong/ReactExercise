@@ -5,27 +5,40 @@ import { useState } from 'react';
 
 function App() {
   const [num, setNum] = useState(0);
-  let OddorEven = "ข้อความ";
-  var textno = " ไม่";
-  let IsnotEven = textno.bold();
-    if (num%2===0){
-      OddorEven = num + IsnotEven + "เป็นจำนวนเฉพาะ";
-    } else if(num%2!==0){
-      OddorEven = num + " เป็นจำนวนเฉพาะ";
+  const [resultText, setResultText] = useState('');
+
+  const increaseNum = () => {
+    setNum(num + 1);
+    checkOddOrEven(num + 1);
+  };
+
+  const decreaseNum = () => {
+    setNum(num - 1);
+    checkOddOrEven(num - 1);
+  };
+
+  const checkOddOrEven = (number) => {
+    let result = '';
+    if (number % 2 === 0) {
+      result = `${number} <strong>ไม่</strong>เป็นจำนวนเฉพาะ`;
+    } else {
+      result = `${number} เป็นจำนวนเฉพาะ`;
     }
-    document.getElementById("number").innerHTML = OddorEven;
+    setResultText(result);
+  };
+
   return (
     <div className="App">
       <Header />
       <div className="MyContent">
-        <h2>{num}</h2><br></br>
-        <button className="btn btn-primary" onClick={()=>setNum(num+1)}>เพิ่ม</button>
-        &nbsp;&nbsp;
-        <button className="btn btn-primary" onClick={()=>setNum(num-1)}>ลด</button>
-        <br></br><br></br>
-        <span id="number"></span>
+      <h1>{num}</h1><br></br>
+      <button onClick={increaseNum} className="btn btn-primary">เพิ่ม</button>
+      &nbsp;&nbsp;
+      <button onClick={decreaseNum} className="btn btn-primary">ลด</button>
+      <br></br><br></br>
+      <span dangerouslySetInnerHTML={{ __html: resultText }}></span>
       </div>
-      <Footer />
+    <Footer />
     </div>
   );
 }
