@@ -9,23 +9,38 @@ function App() {
 
   const increaseNum = () => {
     setNum(num + 1);
-    checkOddOrEven(num + 1);
+    checkPrimeNumber(num + 1);
   };
 
   const decreaseNum = () => {
     setNum(num - 1);
-    checkOddOrEven(num - 1);
+    checkPrimeNumber(num - 1);
   };
 
-  const checkOddOrEven = (number) => {
-    let result = '';
-    if (number % 2 === 0) {
-      result = `${number} <strong>ไม่</strong>เป็นจำนวนเฉพาะ`;
-    } else {
-      result = `${number} เป็นจำนวนเฉพาะ`;
+  const checkPrimeNumber = (number) => {
+  let result = '';
+
+  if (number <= 1) {
+    result = `${number} <strong>ไม่</strong>เป็นจำนวนเฉพาะ`;
+  } else {
+    let isPrime = true;
+
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+      if (number % i === 0) {
+        isPrime = false;
+        break;
+      }
     }
-    setResultText(result);
-  };
+    
+    if (isPrime) {
+      result = `${number} เป็นจำนวนเฉพาะ`;
+    } else {
+      result = `${number} <strong>ไม่</strong>เป็นจำนวนเฉพาะ`;
+    }
+  }
+
+  setResultText(result);
+};
 
   return (
     <div className="App">
