@@ -21,7 +21,7 @@ function App() {
   let result = '';
 
   if (number <= 1) {
-    result = `${number} <strong>ไม่</strong>เป็นจำนวนเฉพาะ`;
+    result = `${number} <strong>ไม่</strong>เป็นจำนวนเฉพาะs`;
   } else {
     let isPrime = true;
 
